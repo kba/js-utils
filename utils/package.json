@@ -2,7 +2,7 @@
   "name": "@kba/utils",
   "version": "0.0.1",
   "description": "Utility methods on values I use all the time",
-  "main": "utils.js",
+  "main": "dist/utils.js",
   "scripts": {
     "test": "tap *.test.js",
     "prepublish": "webpack"
