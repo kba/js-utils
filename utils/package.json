@@ -1,0 +1,28 @@
+{
+  "name": "@kba/utils",
+  "version": "0.0.1",
+  "description": "Utility methods on values I use all the time",
+  "main": "utils.js",
+  "scripts": {
+    "test": "tap *.test.js",
+    "prepublish": "webpack"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "git+https://github.com/kba/js-utils",
+  "author": "kba",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kba/js-utils/issues"
+  },
+  "homepage": "https://github.com/kba/js-utils#readme",
+  "devDependencies": {
+    "babel-core": "6.26.0",
+    "babel-loader": "7.1.2",
+    "babel-preset-env": "1.6.1",
+    "tap": "11.0.0",
+    "url-parse": "1.2.0",
+    "webpack": "3.10.0"
+  }
+}
