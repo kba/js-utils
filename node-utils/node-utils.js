@@ -4,6 +4,8 @@ const path = require('path')
 const mkdirp = require('mkdirp')
 const rimraf = require('rimraf')
 const {fetch} = require('fetch-ponyfill')()
+const fs = require('fs')
+const FormData = require('form-data')
 
 /**
  * ### inspect(obj)
@@ -55,11 +57,51 @@ function rmdir(dir, opts={}) {
   })
 }
 
+/**
+ * ### uploadFile({filepath, endpoint, metadata})
+ *
+ */
+function uploadFile({
+  endpoint,
+  filepath,
+  metadata={}
+}) {
+  const form = new FormData()
+  Object.keys(metadata).map(k => form.append(k, metadata[k]))
+  return new Promise((resolve, reject) => {
+    const stream = fs.createReadStream(filepath)
+    stream.on('error', reject)
+    form.append('file', stream)
+    fetch(endpoint, {
+      method: 'POST',
+      body: form,
+    }).then(resolve).catch(reject)
+  })
+}
+
+/**
+ * ### fetch(...args)
+ *
+ * [fetch-ponyfill](https://github.com/qubyte/fetch-ponyfill)
+ *
+ */
+
+/**
+ * ### FormData
+ *
+ * [form-data](https://github.com/form-data/form-data)
+ *
+ */
+
+
 module.exports = {
   inspect,
   relativizeFile,
   mkdir,
   rmdir,
-  fetch
+  fetch,
+  uploadFile,
+  FormData,
 }
+
 Object.assign(module.exports, utils)
