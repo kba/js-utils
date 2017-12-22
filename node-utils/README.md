@@ -17,6 +17,9 @@
 	* [relativizeFile(relPath, absPath](#relativizefilerelpath-abspath)
 	* [mkdir(dir, opts)](#mkdirdir-opts)
 	* [rmdir(dir, opts)](#rmdirdir-opts)
+	* [uploadFile({filepath, endpoint, metadata})](#uploadfile-filepath-endpoint-metadata-)
+	* [fetch(...args)](#fetchargs)
+	* [FormData](#formdata)
 
 <!-- END-MARKDOWN-TOC -->
 
@@ -74,5 +77,10 @@ Recursively create `dir`.
 Recursively remove `dir`.
 
 @return promise
+### uploadFile({filepath, endpoint, metadata})
+### fetch(...args)
+[fetch-ponyfill](https://github.com/qubyte/fetch-ponyfill)
+### FormData
+[form-data](https://github.com/form-data/form-data)
 
 <!-- END-RENDER -->
