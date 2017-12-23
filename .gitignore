@@ -2,3 +2,4 @@ node-utils/node_modules
 utils/node_modules
 lerna-debug.log
 utils/*/dist/*.map
+node_modules

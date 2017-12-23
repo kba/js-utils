@@ -11,6 +11,7 @@
 	* [shortenOutput(data, max=10)](#shortenoutputdata-max-10)
 	* [parseURL(...args)](#parseurlargs)
 	* [lastUrlSegment(url, removeTrailing=false)](#lasturlsegmenturl-removetrailing-false)
+	* [randomString({prefix='', template='', length=-1})](#randomstring-prefix----template----length--1-)
 * [`@kba/node-utils`](#kbanode-utils)
 	* [inspect(obj)](#inspectobj)
 	* [inspect.log(obj)](#inspectlogobj)
@@ -53,6 +54,9 @@ Shorten `data` to a maximum of `max` characters.
 ### lastUrlSegment(url, removeTrailing=false)
 
 Returns the last segment of a URL
+### randomString({prefix='', template='', length=-1})
+Generate a URL-friendly random string.
+Template must have at least 3 `X` in a row
 
 <!-- END-RENDER -->
 

@@ -11,6 +11,7 @@ module.exports = {
   truthy,
   urlJoin,
   verticalConcat,
+  randomString,
 }
 
 /**
@@ -119,3 +120,29 @@ function lastUrlSegment(url, removeTrailing=false) {
   const segments = pathname.split('/')
   return segments[segments.length - 1]
 }
+
+/**
+ * ### randomString({prefix='', template='', length=-1})
+ *
+ * Generate a URL-friendly random string.
+ *
+ * Template must have at least 3 `X` in a row
+ *
+ */
+const shortid = require('shortid')
+const xesRe = /(XXX+)/
+shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@')
+function randomString({prefix='', template='', length=-1}={}) {
+  if (template && template.match(xesRe)) {
+    template.replace(xesRe, (_, xes) => length = xes.length)
+  }
+  let id = shortid.generate()
+  while (id.length < length) {
+    id += shortid.generate()
+  }
+  if (length > -1) id = id.substr(0, length)
+  if (template && template != '') id = template.replace(xesRe, id)
+  if (prefix && prefix != '') id = `${prefix}.${id}`
+  return id
+}
+
