@@ -8,7 +8,7 @@ const FormData = require('form-data')
 module.exports = {}
 Object.assign(module.exports, require('@kba/utils'))
 
-Object.assign({
+Object.assign(module.exports, {
   inspect,
   relativizeFile,
   mkdir,
