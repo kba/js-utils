@@ -4,9 +4,10 @@ const mkdirp = require('mkdirp')
 const rimraf = require('rimraf')
 const fs = require('fs')
 const FormData = require('form-data')
+const utils = require('@kba/utils')
 
 module.exports = {}
-Object.assign(module.exports, require('@kba/utils'))
+Object.assign(module.exports, utils)
 
 Object.assign(module.exports, {
   inspect,
@@ -82,7 +83,7 @@ function uploadFile({
     const stream = fs.createReadStream(filepath)
     stream.on('error', reject)
     form.append('file', stream)
-    fetch(endpoint, {
+    utils.fetch(endpoint, {
       method: 'POST',
       body: form,
     }).then(resolve).catch(reject)
