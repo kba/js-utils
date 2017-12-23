@@ -1,3 +1,10 @@
+const util = require('util')
+const path = require('path')
+const mkdirp = require('mkdirp')
+const rimraf = require('rimraf')
+const fs = require('fs')
+const FormData = require('form-data')
+
 module.exports = {}
 Object.assign(module.exports, require('@kba/utils'))
 
@@ -9,13 +16,6 @@ Object.assign({
   uploadFile,
   FormData,
 })
-
-const util = require('util')
-const path = require('path')
-const mkdirp = require('mkdirp')
-const rimraf = require('rimraf')
-const fs = require('fs')
-const FormData = require('form-data')
 
 /**
  * ### inspect(obj)
