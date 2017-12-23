@@ -18,7 +18,6 @@
   "homepage": "https://github.com/kba/js-utils#readme",
   "dependencies": {
     "@kba/utils": "^0.1.0",
-    "fetch-ponyfill": "4.1.0",
     "mkdirp": "0.5.1",
     "rimraf": "2.6.2"
   },

@@ -1,9 +1,19 @@
-const utils = require('@kba/utils')
+module.exports = {}
+Object.assign(module.exports, require('@kba/utils'))
+
+Object.assign({
+  inspect,
+  relativizeFile,
+  mkdir,
+  rmdir,
+  uploadFile,
+  FormData,
+})
+
 const util = require('util')
 const path = require('path')
 const mkdirp = require('mkdirp')
 const rimraf = require('rimraf')
-const {fetch} = require('fetch-ponyfill')()
 const fs = require('fs')
 const FormData = require('form-data')
 
@@ -80,28 +90,8 @@ function uploadFile({
 }
 
 /**
- * ### fetch(...args)
- *
- * [fetch-ponyfill](https://github.com/qubyte/fetch-ponyfill)
- *
- */
-
-/**
  * ### FormData
  *
  * [form-data](https://github.com/form-data/form-data)
  *
  */
-
-
-module.exports = {
-  inspect,
-  relativizeFile,
-  mkdir,
-  rmdir,
-  fetch,
-  uploadFile,
-  FormData,
-}
-
-Object.assign(module.exports, utils)

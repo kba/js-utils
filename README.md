@@ -12,6 +12,7 @@
 	* [parseURL(...args)](#parseurlargs)
 	* [lastUrlSegment(url, removeTrailing=false)](#lasturlsegmenturl-removetrailing-false)
 	* [randomString({prefix='', template='', length=-1})](#randomstring-prefix----template----length--1-)
+	* [fetch(...args)](#fetchargs)
 * [`@kba/node-utils`](#kbanode-utils)
 	* [inspect(obj)](#inspectobj)
 	* [inspect.log(obj)](#inspectlogobj)
@@ -19,7 +20,6 @@
 	* [mkdir(dir, opts)](#mkdirdir-opts)
 	* [rmdir(dir, opts)](#rmdirdir-opts)
 	* [uploadFile({filepath, endpoint, metadata})](#uploadfile-filepath-endpoint-metadata-)
-	* [fetch(...args)](#fetchargs)
 	* [FormData](#formdata)
 
 <!-- END-MARKDOWN-TOC -->
@@ -57,6 +57,8 @@ Returns the last segment of a URL
 ### randomString({prefix='', template='', length=-1})
 Generate a URL-friendly random string.
 Template must have at least 3 `X` in a row
+### fetch(...args)
+[fetch-ponyfill](https://github.com/qubyte/fetch-ponyfill)
 
 <!-- END-RENDER -->
 
@@ -82,8 +84,6 @@ Recursively remove `dir`.
 
 @return promise
 ### uploadFile({filepath, endpoint, metadata})
-### fetch(...args)
-[fetch-ponyfill](https://github.com/qubyte/fetch-ponyfill)
 ### FormData
 [form-data](https://github.com/form-data/form-data)
 
