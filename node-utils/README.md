@@ -12,6 +12,7 @@
 	* [parseURL(...args)](#parseurlargs)
 	* [lastUrlSegment(url, removeTrailing=false)](#lasturlsegmenturl-removetrailing-false)
 	* [randomString({prefix='', template='', length=-1})](#randomstring-prefix----template----length--1-)
+	* [uniq(arr)](#uniqarr)
 * [`@kba/node-utils`](#kbanode-utils)
 	* [inspect(obj)](#inspectobj)
 	* [inspect.log(obj)](#inspectlogobj)
@@ -21,6 +22,7 @@
 	* [uploadFile({filepath, endpoint, metadata})](#uploadfile-filepath-endpoint-metadata-)
 	* [FormData](#formdata)
 	* [fetch(...args)](#fetchargs)
+	* [corsMiddleware(opts)](#corsmiddlewareopts)
 
 <!-- END-MARKDOWN-TOC -->
 
@@ -57,6 +59,8 @@ Returns the last segment of a URL
 ### randomString({prefix='', template='', length=-1})
 Generate a URL-friendly random string.
 Template must have at least 3 `X` in a row
+### uniq(arr)
+Return unique literals in arr.
 
 <!-- END-RENDER -->
 
@@ -86,5 +90,8 @@ Recursively remove `dir`.
 [form-data](https://github.com/form-data/form-data)
 ### fetch(...args)
 [fetch-ponyfill](https://github.com/qubyte/fetch-ponyfill)
+### corsMiddleware(opts)
+@return middleware that adds `Access-Control` headers.
+If `opts.allowOrigin` is `origin`, this will mirror the request header `Origin`.
 
 <!-- END-RENDER -->

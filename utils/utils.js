@@ -12,6 +12,7 @@ module.exports = {
   urlJoin,
   verticalConcat,
   randomString,
+  uniq,
 }
 
 /**
@@ -146,3 +147,16 @@ function randomString({prefix='', template='', length=-1}={}) {
   return id
 }
 
+/**
+ * ### uniq(arr)
+ *
+ * Return unique literals in arr.
+ */
+function uniq(arr=[]) {
+  const ret = []
+  arr.forEach(v => {
+    if (ret.indexOf(v) === -1)
+      ret.push(v)
+  })
+  return ret
+}

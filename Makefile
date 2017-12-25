@@ -32,7 +32,7 @@ test:
 # Generate TOC and API docs in READMEs
 readme: utils node-utils
 	shinclude -c xml -i README.md
-	for i in $(MODULES);do cp README.md $i;done
+	for i in $(MODULES);do cp README.md $$i;done
 
 # lerna bootstrap --hoist
 bootstrap:
@@ -48,9 +48,9 @@ watch:
 
 # npm link all modules for development
 link:
-	for i in $(MODULES);do (cd $i; npm link) ;done
+	for i in $(MODULES);do (cd $$i; npm link) ;done
 
 # lerna publish
-publish: bootstrap webpack test
+publish: bootstrap webpack test readme
 	changes="`git status -s`"; [[ -z "$$changes" ]] || { echo -e "Uncomitted changes:\n$$changes"; exit 1; }
 	lerna publish

@@ -221,7 +221,8 @@ module.exports = {
   truthy,
   urlJoin,
   verticalConcat,
-  randomString
+  randomString,
+  uniq
 
   /**
    * ### urlJoin(...args)
@@ -348,6 +349,19 @@ function randomString({ prefix = '', template = '', length = -1 } = {}) {
   if (template && template != '') id = template.replace(xesRe, id);
   if (prefix && prefix != '') id = `${prefix}.${id}`;
   return id;
+}
+
+/**
+ * ### uniq(arr)
+ *
+ * Return unique literals in arr.
+ */
+function uniq(arr = []) {
+  const ret = [];
+  arr.forEach(v => {
+    if (ret.indexOf(v) === -1) ret.push(v);
+  });
+  return ret;
 }
 
 /***/ }),

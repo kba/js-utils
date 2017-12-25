@@ -18,6 +18,7 @@ Object.assign(module.exports, {
   rmdir,
   uploadFile,
   FormData,
+  corsMiddleware,
 })
 
 /**
@@ -106,3 +107,35 @@ function uploadFile({
  *
  */
 
+/**
+ * ### corsMiddleware(opts)
+ *
+ * @return middleware that adds `Access-Control` headers.
+ *
+ * If `opts.allowOrigin` is `origin`, this will mirror the request header `Origin`.
+ */
+function corsMiddleware({
+  allowOrigin='*',
+  exposeHeaders=[],
+  allowCredentials=true,
+  allowMethods=['HEAD', 'OPTIONS', 'GET', 'POST', 'PUT', 'DELETE'],
+  allowHeaders=[],
+}={}) {
+  exposeHeaders = utils.uniq([
+    'ETag', 'Allow', 'Vary', 'Link', 'Content-Type', 'Location', 'Content-Location', 'Prefer',
+    ...exposeHeaders,
+  ])
+  allowHeaders = utils.uniq([
+    'Content-Type', 'Prefer', 'Authorization',
+    ...allowHeaders,
+  ])
+    return (req, resp, next) => {
+      let _allowOrigin =  (allowOrigin === 'origin') ? req.get('Origin') : allowOrigin
+      resp.header('Access-Control-Allow-Origin',      _allowOrigin)
+      resp.header('Access-Control-Allow-Credentials', allowCredentials)
+      resp.header('Access-Control-Allow-Methods',     allowMethods.join(', ')),
+      resp.header('Access-Control-Allow-Headers',     allowHeaders.join(', '))
+      resp.header('Access-Control-Expose-Headers',    exposeHeaders.join(', '))
+      next()
+    }
+}

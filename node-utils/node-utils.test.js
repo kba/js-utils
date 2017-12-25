@@ -16,15 +16,17 @@ tap.test('node-utils', t => {
       'urlJoin',
       'verticalConcat',
       'randomString',
-      'fetch',
+      'uniq',
 
       // node-utils
+      'fetch',
       'inspect',
       'relativizeFile',
       'mkdir',
       'rmdir',
       'uploadFile',
       'FormData',
+      'corsMiddleware',
     ], 'all exports')
   })
   t.end()
