@@ -9,7 +9,6 @@ tap.test('utils', t => {
     t.deepEquals(Object.keys(require('.')), [
       // utils
       'deansi',
-      'fetch',
       'jsonify',
       'lastUrlSegment',
       'parseUrl',

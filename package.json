@@ -1,10 +1,10 @@
 {
   "description": "Utility methods on values I use all the time",
   "scripts": {
-    "start": "lerna bootstrap; cd utils; npm run prepublish",
-    "test": "lerna run test",
-    "link": "(cd utils; npm link); (cd node-utils; npm link)",
-    "prepublish": "shinclude -c xml -i README.md; cp README.md utils; cp README.md node-utils"
+    "start": "make bootstrap watch",
+    "test": "make test",
+    "link": "make link",
+    "prepublish": "make bootstrap webpack readme"
   },
   "repository": "git+https://github.com/kba/js-utils",
   "author": "kba",

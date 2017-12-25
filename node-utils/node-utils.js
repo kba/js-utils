@@ -5,11 +5,13 @@ const rimraf = require('rimraf')
 const fs = require('fs')
 const FormData = require('form-data')
 const utils = require('@kba/utils')
+const fetch = require('node-fetch')
 
 module.exports = {}
 Object.assign(module.exports, utils)
 
 Object.assign(module.exports, {
+  fetch,
   inspect,
   relativizeFile,
   mkdir,
@@ -83,7 +85,7 @@ function uploadFile({
     const stream = fs.createReadStream(filepath)
     stream.on('error', reject)
     form.append('file', stream)
-    utils.fetch(endpoint, {
+    fetch(endpoint, {
       method: 'POST',
       body: form,
     }).then(resolve).catch(reject)
@@ -96,3 +98,11 @@ function uploadFile({
  * [form-data](https://github.com/form-data/form-data)
  *
  */
+
+/**
+ * ### fetch(...args)
+ *
+ * [fetch-ponyfill](https://github.com/qubyte/fetch-ponyfill)
+ *
+ */
+

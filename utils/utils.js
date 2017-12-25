@@ -1,9 +1,7 @@
 const URL = require('url-parse')
-const {fetch} = require('fetch-ponyfill')()
 
 module.exports = {
   deansi,
-  fetch,
   jsonify,
   lastUrlSegment,
   parseUrl,
@@ -42,7 +40,7 @@ function truthy(val) {
  * 
  * Clone an object by serializing and deserializing to/from JSON
  */
-function jsonify(obj) {
+function jsonify(obj={}) {
   return JSON.parse(JSON.stringify(obj))
 }
 
@@ -147,11 +145,4 @@ function randomString({prefix='', template='', length=-1}={}) {
   if (prefix && prefix != '') id = `${prefix}.${id}`
   return id
 }
-
-/**
- * ### fetch(...args)
- *
- * [fetch-ponyfill](https://github.com/qubyte/fetch-ponyfill)
- *
- */
 

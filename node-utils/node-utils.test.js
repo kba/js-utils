@@ -6,7 +6,6 @@ tap.test('node-utils', t => {
     t.deepEquals(Object.keys(require('.')), [
       // utils
       'deansi',
-      'fetch',
       'jsonify',
       'lastUrlSegment',
       'parseUrl',
@@ -17,6 +16,7 @@ tap.test('node-utils', t => {
       'urlJoin',
       'verticalConcat',
       'randomString',
+      'fetch',
 
       // node-utils
       'inspect',
@@ -27,6 +27,5 @@ tap.test('node-utils', t => {
       'FormData',
     ], 'all exports')
   })
-  t.skip("Not implemented")
   t.end()
 })

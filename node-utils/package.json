@@ -19,6 +19,7 @@
   "dependencies": {
     "@kba/utils": "^0.1.4",
     "mkdirp": "0.5.1",
+    "node-fetch": "1.7.3",
     "rimraf": "2.6.2"
   },
   "devDependencies": {
