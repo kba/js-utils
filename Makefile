@@ -1,3 +1,4 @@
+SHELL = /bin/bash
 PATH := $(PWD)/node_modules/.bin:$(PATH)
 MODULES = utils node-utils
 
@@ -50,6 +51,6 @@ link:
 	for i in $(MODULES);do (cd $i; npm link) ;done
 
 # lerna publish
-publish: bootstrap webpack
-	git diff-index HEAD -- || { echo "Uncomitted changes"; exit 1; }
+publish: bootstrap webpack test
+	changes="`git status -s`"; [[ -z "$$changes" ]] || { echo -e "Uncomitted changes:\n$$changes"; exit 1; }
 	lerna publish
