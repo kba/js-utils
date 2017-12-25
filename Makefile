@@ -51,5 +51,5 @@ link:
 
 # lerna publish
 publish: bootstrap webpack
-	git diff-index --quiet HEAD -- || { echo "Uncomitted changes"; exit 1; }
+	git diff-index --quiet HEAD -- && { echo "Uncomitted changes"; exit 1; }
 	lerna publish
