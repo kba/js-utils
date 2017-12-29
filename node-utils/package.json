@@ -1,6 +1,6 @@
 {
   "name": "@kba/node-utils",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Utility methods on values I use all the time",
   "main": "node-utils.js",
   "scripts": {
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/kba/js-utils#readme",
   "dependencies": {
-    "@kba/utils": "^0.1.6",
+    "@kba/utils": "^0.1.7",
     "mkdirp": "0.5.1",
     "node-fetch": "1.7.3",
     "rimraf": "2.6.2"
