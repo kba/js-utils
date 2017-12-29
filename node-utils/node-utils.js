@@ -19,6 +19,7 @@ Object.assign(module.exports, {
   uploadFile,
   FormData,
   corsMiddleware,
+  nedbCollectionRouteHandler,
 })
 
 /**
@@ -138,4 +139,64 @@ function corsMiddleware({
       resp.header('Access-Control-Expose-Headers',    exposeHeaders.join(', '))
       next()
     }
+}
+
+/**
+ * ### nedbCollectionRouteHandler(opts)
+ * 
+ *  Generate a handler suitable for a GET query on the root of a nedb collection.
+ * 
+ * ```
+ * @param {DataStore} opts.collection collection to query
+ * @param {Promise} postProcess augment results
+ * @param {Object} projection for query results
+ * @param {String} defaultSort default sort.
+ * ```
+ * 
+ */
+function nedbCollectionRouteHandler(opts={}) {
+  const {
+    collection,
+    postProcess,
+    projection,
+    defaultSort,
+  } = Object.assign({}, {
+    postProcess: Promise.resolve,
+    projection: {},
+    defaultSort: "modified.desc",
+  }, opts)
+  return (req, resp, next) => {
+    let {
+      q='{}',
+      perPage=10,
+      page=1,
+      sort=defaultSort
+    } = req.query
+    let [sortField, sortOrder] = sort.split('.')
+    sortOrder = sortOrder.toLowerCase() === 'desc' ? -1 : +1
+    try {
+      q = JSON.parse(q)
+      Object.keys(q).forEach(k => {
+        const v = q[k]
+        console.log({v})
+        if (v.$regex) v.$regex = new RegExp(v.$regex)
+      })
+      console.log(q)
+    } catch (e) {
+      return next(new Error(`Malformed query: '${q}': ${e}`))
+    }
+    collection.count(q, (err, total) => {
+      if (err) return next(err)
+      resp.header('X-Total-Count', total)
+      collection.find(q, projection)
+        .sort({[sortField]: sortOrder})
+        .skip((page - 1) * perPage)
+        .limit(perPage)
+        .exec((err, docs) => {
+          if (err)
+            return next(err)
+          postProcess(docs).then(() => resp.send(docs))
+        })
+    })
+  }
 }

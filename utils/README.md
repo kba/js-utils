@@ -23,6 +23,7 @@
 	* [FormData](#formdata)
 	* [fetch(...args)](#fetchargs)
 	* [corsMiddleware(opts)](#corsmiddlewareopts)
+	* [nedbCollectionRouteHandler(opts)](#nedbcollectionroutehandleropts)
 
 <!-- END-MARKDOWN-TOC -->
 
@@ -93,5 +94,15 @@ Recursively remove `dir`.
 ### corsMiddleware(opts)
 @return middleware that adds `Access-Control` headers.
 If `opts.allowOrigin` is `origin`, this will mirror the request header `Origin`.
+### nedbCollectionRouteHandler(opts)
+
+ Generate a handler suitable for a GET query on the root of a nedb collection.
+
+```
+@param {DataStore} opts.collection collection to query
+@param {Promise} postProcess augment results
+@param {Object} projection for query results
+@param {String} defaultSort default sort.
+```
 
 <!-- END-RENDER -->

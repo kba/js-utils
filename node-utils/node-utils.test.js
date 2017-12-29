@@ -27,6 +27,7 @@ tap.test('node-utils', t => {
       'uploadFile',
       'FormData',
       'corsMiddleware',
+      'nedbCollectionRouteHandler',
     ], 'all exports')
   })
   t.end()
