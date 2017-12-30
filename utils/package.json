@@ -25,5 +25,8 @@
     "tap": "11.0.0",
     "url-parse": "1.2.0",
     "webpack": "3.10.0"
+  },
+  "dependencies": {
+    "traverse": "0.6.6"
   }
 }

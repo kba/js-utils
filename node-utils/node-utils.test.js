@@ -17,6 +17,7 @@ tap.test('node-utils', t => {
       'verticalConcat',
       'randomString',
       'uniq',
+      'traverse',
 
       // node-utils
       'fetch',

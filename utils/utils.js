@@ -1,4 +1,5 @@
 const URL = require('url-parse')
+const traverse = require('traverse')
 
 module.exports = {
   deansi,
@@ -13,6 +14,7 @@ module.exports = {
   verticalConcat,
   randomString,
   uniq,
+  traverse,
 }
 
 /**

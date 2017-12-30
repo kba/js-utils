@@ -20,6 +20,7 @@ tap.test('utils', t => {
       'verticalConcat',
       'randomString',
       'uniq',
+      'traverse',
     ])
   })
 
