@@ -152,6 +152,7 @@ function corsMiddleware({
  * @param {Object} projection for query results
  * @param {String} defaultSort default sort. Default: `modified.desc`
  * @param {String} regexify whether to turn string regexes into real regexes for `$regex` query fields
+ * @param {String} dateify whether to turn string ISO dates into Date objects
  * ```
  * 
  */
@@ -162,11 +163,13 @@ function nedbCollectionRouteHandler(opts={}) {
     projection,
     defaultSort,
     regexify,
+    dateify,
   } = Object.assign({}, {
     postProcess: Promise.resolve,
     projection: {},
     defaultSort: "modified.desc",
     regexify: false,
+    dateify: false,
   }, opts)
   return (req, resp, next) => {
     let {
@@ -179,6 +182,13 @@ function nedbCollectionRouteHandler(opts={}) {
     sortOrder = sortOrder.toLowerCase() === 'desc' ? -1 : +1
     try {
       q = JSON.parse(q)
+      if (dateify) {
+        utils.traverse(q).forEach(function() {
+          if (typeof this.node === 'string' && /^\d\d\d\d-\d\d-\d\dT.*/.test(this.node)) {
+            this.update(new Date(Date.parse(this.node)))
+          }
+        })
+      }
       if (regexify) {
         utils.traverse(q).forEach(function() {
           if (this.key === '$regex' && typeof this.node === 'string') {

@@ -104,6 +104,7 @@ If `opts.allowOrigin` is `origin`, this will mirror the request header `Origin`.
 @param {Object} projection for query results
 @param {String} defaultSort default sort. Default: `modified.desc`
 @param {String} regexify whether to turn string regexes into real regexes for `$regex` query fields
+@param {String} dateify whether to turn string ISO dates into Date objects
 ```
 
 <!-- END-RENDER -->
