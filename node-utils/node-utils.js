@@ -150,7 +150,8 @@ function corsMiddleware({
  * @param {DataStore} opts.collection collection to query
  * @param {Promise} postProcess augment results
  * @param {Object} projection for query results
- * @param {String} defaultSort default sort.
+ * @param {String} defaultSort default sort. Default: `modified.desc`
+ * @param {String} regexify whether to turn string regexes into real regexes for `$regex` query fields
  * ```
  * 
  */
@@ -160,10 +161,12 @@ function nedbCollectionRouteHandler(opts={}) {
     postProcess,
     projection,
     defaultSort,
+    regexify,
   } = Object.assign({}, {
     postProcess: Promise.resolve,
     projection: {},
     defaultSort: "modified.desc",
+    regexify: false,
   }, opts)
   return (req, resp, next) => {
     let {
@@ -176,12 +179,13 @@ function nedbCollectionRouteHandler(opts={}) {
     sortOrder = sortOrder.toLowerCase() === 'desc' ? -1 : +1
     try {
       q = JSON.parse(q)
-      Object.keys(q).forEach(k => {
-        const v = q[k]
-        console.log({v})
-        if (v.$regex) v.$regex = new RegExp(v.$regex)
-      })
-      console.log(q)
+      if (regexify) {
+        utils.traverse(q).forEach(function() {
+          if (this.key === '$regex' && typeof this.node === 'string') {
+            this.update(new RegExp(this.node))
+          }
+        })
+      }
     } catch (e) {
       return next(new Error(`Malformed query: '${q}': ${e}`))
     }

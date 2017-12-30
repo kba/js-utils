@@ -102,7 +102,8 @@ If `opts.allowOrigin` is `origin`, this will mirror the request header `Origin`.
 @param {DataStore} opts.collection collection to query
 @param {Promise} postProcess augment results
 @param {Object} projection for query results
-@param {String} defaultSort default sort.
+@param {String} defaultSort default sort. Default: `modified.desc`
+@param {String} regexify whether to turn string regexes into real regexes for `$regex` query fields
 ```
 
 <!-- END-RENDER -->
