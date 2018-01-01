@@ -27,6 +27,7 @@
     "webpack": "3.10.0"
   },
   "dependencies": {
+    "deepmerge": "2.0.1",
     "traverse": "0.6.6"
   }
 }

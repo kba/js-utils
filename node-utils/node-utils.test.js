@@ -18,6 +18,7 @@ tap.test('node-utils', t => {
       'randomString',
       'uniq',
       'traverse',
+      'deepmerge',
 
       // node-utils
       'fetch',

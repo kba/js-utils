@@ -2,7 +2,7 @@ const tap = require('tap')
 const utils = require('./dist/utils')
 
 tap.test('utils', t => {
-  t.plan(5)
+  t.plan(6)
 
   t.test('exports', t => {
     t.plan(1)
@@ -21,6 +21,7 @@ tap.test('utils', t => {
       'randomString',
       'uniq',
       'traverse',
+      'deepmerge',
     ])
   })
 
@@ -57,6 +58,16 @@ tap.test('utils', t => {
     t.plan(1)
     const {uniq} = utils
     t.deepEquals(uniq([1, 2, 1, 3]), [1, 2, 3])
+  })
+
+  t.test('deepmerge', t => {
+    t.plan(1)
+    const {deepmerge} = utils
+    t.deepEquals(
+      deepmerge({foo: [1], bar: 42}, {foo: [2], baz: 23}),
+      {foo: [1, 2], bar: 42, baz: 23},
+      'deepmege worked'
+    )
   })
 
 })

@@ -1,5 +1,6 @@
 const URL = require('url-parse')
 const traverse = require('traverse')
+const deepmerge = require('deepmerge').default
 
 module.exports = {
   deansi,
@@ -15,6 +16,7 @@ module.exports = {
   randomString,
   uniq,
   traverse,
+  deepmerge,
 }
 
 /**
@@ -162,3 +164,16 @@ function uniq(arr=[]) {
   })
   return ret
 }
+
+/**
+ * ### traverse
+ *
+ * See [substack/js-traverse](https://github.com/substack/js-traverse)
+ *
+ */
+
+/**
+ * ### deepmerge
+ *
+ * See [KyleAMathews/deepmerge](https://github.com/KyleAMathews/deepmerge)
+ */

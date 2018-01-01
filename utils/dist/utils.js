@@ -80,7 +80,7 @@ return /******/ (function(modules) { // webpackBootstrap
 "use strict";
 
 
-var randomFromSeed = __webpack_require__(10);
+var randomFromSeed = __webpack_require__(11);
 
 var ORIGINAL = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-';
 var alphabet;
@@ -185,7 +185,7 @@ module.exports = {
 "use strict";
 
 
-var randomByte = __webpack_require__(11);
+var randomByte = __webpack_require__(12);
 
 function encode(lookup, number) {
     var loopCounter = 0;
@@ -210,6 +210,7 @@ module.exports = encode;
 
 const URL = __webpack_require__(3);
 const traverse = __webpack_require__(7);
+const deepmerge = __webpack_require__(8).default;
 
 module.exports = {
   deansi,
@@ -224,7 +225,8 @@ module.exports = {
   verticalConcat,
   randomString,
   uniq,
-  traverse
+  traverse,
+  deepmerge
 
   /**
    * ### urlJoin(...args)
@@ -336,7 +338,7 @@ function lastUrlSegment(url, removeTrailing = false) {
  * Template must have at least 3 `X` in a row
  *
  */
-const shortid = __webpack_require__(8);
+const shortid = __webpack_require__(9);
 const xesRe = /(XXX+)/;
 shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
 function randomString({ prefix = '', template = '', length = -1 } = {}) {
@@ -365,6 +367,19 @@ function uniq(arr = []) {
   });
   return ret;
 }
+
+/**
+ * ### traverse
+ *
+ * See [substack/js-traverse](https://github.com/substack/js-traverse)
+ *
+ */
+
+/**
+ * ### deepmerge
+ *
+ * See [KyleAMathews/deepmerge](https://github.com/KyleAMathews/deepmerge)
+ */
 
 /***/ }),
 /* 3 */
@@ -1259,11 +1274,99 @@ var hasOwnProperty = Object.hasOwnProperty || function (obj, key) {
 
 /***/ }),
 /* 8 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var isMergeableObject = function isMergeableObject(value) {
+	return isNonNullObject(value)
+		&& !isSpecial(value)
+};
 
-module.exports = __webpack_require__(9);
+function isNonNullObject(value) {
+	return !!value && typeof value === 'object'
+}
+
+function isSpecial(value) {
+	var stringValue = Object.prototype.toString.call(value);
+
+	return stringValue === '[object RegExp]'
+		|| stringValue === '[object Date]'
+		|| isReactElement(value)
+}
+
+// see https://github.com/facebook/react/blob/b5ac963fb791d1298e7f396236383bc955f916c1/src/isomorphic/classic/element/ReactElement.js#L21-L25
+var canUseSymbol = typeof Symbol === 'function' && Symbol.for;
+var REACT_ELEMENT_TYPE = canUseSymbol ? Symbol.for('react.element') : 0xeac7;
+
+function isReactElement(value) {
+	return value.$$typeof === REACT_ELEMENT_TYPE
+}
+
+function emptyTarget(val) {
+	return Array.isArray(val) ? [] : {}
+}
+
+function cloneUnlessOtherwiseSpecified(value, optionsArgument) {
+	var clone = !optionsArgument || optionsArgument.clone !== false;
+
+	return (clone && isMergeableObject(value))
+		? deepmerge(emptyTarget(value), value, optionsArgument)
+		: value
+}
+
+function defaultArrayMerge(target, source, optionsArgument) {
+	return target.concat(source).map(function(element) {
+		return cloneUnlessOtherwiseSpecified(element, optionsArgument)
+	})
+}
+
+function mergeObject(target, source, optionsArgument) {
+	var destination = {};
+	if (isMergeableObject(target)) {
+		Object.keys(target).forEach(function(key) {
+			destination[key] = cloneUnlessOtherwiseSpecified(target[key], optionsArgument);
+		});
+	}
+	Object.keys(source).forEach(function(key) {
+		if (!isMergeableObject(source[key]) || !target[key]) {
+			destination[key] = cloneUnlessOtherwiseSpecified(source[key], optionsArgument);
+		} else {
+			destination[key] = deepmerge(target[key], source[key], optionsArgument);
+		}
+	});
+	return destination
+}
+
+function deepmerge(target, source, optionsArgument) {
+	var sourceIsArray = Array.isArray(source);
+	var targetIsArray = Array.isArray(target);
+	var options = optionsArgument || { arrayMerge: defaultArrayMerge };
+	var sourceAndTargetTypesMatch = sourceIsArray === targetIsArray;
+
+	if (!sourceAndTargetTypesMatch) {
+		return cloneUnlessOtherwiseSpecified(source, optionsArgument)
+	} else if (sourceIsArray) {
+		var arrayMerge = options.arrayMerge || defaultArrayMerge;
+		return arrayMerge(target, source, optionsArgument)
+	} else {
+		return mergeObject(target, source, optionsArgument)
+	}
+}
+
+deepmerge.all = function deepmergeAll(array, optionsArgument) {
+	if (!Array.isArray(array)) {
+		throw new Error('first argument should be an array')
+	}
+
+	return array.reduce(function(prev, next) {
+		return deepmerge(prev, next, optionsArgument)
+	}, {})
+};
+
+var deepmerge_1 = deepmerge;
+
+/* harmony default export */ __webpack_exports__["default"] = (deepmerge_1);
 
 
 /***/ }),
@@ -1272,18 +1375,27 @@ module.exports = __webpack_require__(9);
 
 "use strict";
 
+module.exports = __webpack_require__(10);
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 var alphabet = __webpack_require__(0);
 var encode = __webpack_require__(1);
-var decode = __webpack_require__(12);
-var build = __webpack_require__(13);
-var isValid = __webpack_require__(14);
+var decode = __webpack_require__(13);
+var build = __webpack_require__(14);
+var isValid = __webpack_require__(15);
 
 // if you are using cluster or multiple servers use this to make each instance
 // has a unique value for worker
 // Note: I don't know if this is automatically set when using third
 // party cluster solutions such as pm2.
-var clusterWorkerId = __webpack_require__(15) || 0;
+var clusterWorkerId = __webpack_require__(16) || 0;
 
 /**
  * Set the seed.
@@ -1339,7 +1451,7 @@ module.exports.isValid = isValid;
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1371,7 +1483,7 @@ module.exports = {
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1392,7 +1504,7 @@ module.exports = randomByte;
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1416,7 +1528,7 @@ module.exports = decode;
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1471,7 +1583,7 @@ module.exports = build;
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1497,7 +1609,7 @@ module.exports = isShortId;
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

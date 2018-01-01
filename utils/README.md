@@ -13,6 +13,8 @@
 	* [lastUrlSegment(url, removeTrailing=false)](#lasturlsegmenturl-removetrailing-false)
 	* [randomString({prefix='', template='', length=-1})](#randomstring-prefix----template----length--1-)
 	* [uniq(arr)](#uniqarr)
+	* [traverse](#traverse)
+	* [deepmerge](#deepmerge)
 * [`@kba/node-utils`](#kbanode-utils)
 	* [inspect(obj)](#inspectobj)
 	* [inspect.log(obj)](#inspectlogobj)
@@ -62,6 +64,10 @@ Generate a URL-friendly random string.
 Template must have at least 3 `X` in a row
 ### uniq(arr)
 Return unique literals in arr.
+### traverse
+See [substack/js-traverse](https://github.com/substack/js-traverse)
+### deepmerge
+See [KyleAMathews/deepmerge](https://github.com/KyleAMathews/deepmerge)
 
 <!-- END-RENDER -->
 
