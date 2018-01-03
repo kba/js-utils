@@ -1,6 +1,6 @@
 {
   "name": "@kba/node-utils",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Utility methods on values I use all the time",
   "main": "node-utils.js",
   "scripts": {
