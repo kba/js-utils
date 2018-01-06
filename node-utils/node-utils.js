@@ -161,12 +161,14 @@ function nedbCollectionRouteHandler(opts={}) {
     collection,
     postProcess,
     projection,
+    defaultQuery,
     defaultSort,
     regexify,
     dateify,
   } = Object.assign({}, {
     postProcess: Promise.resolve,
     projection: {},
+    defaultQuery: {},
     defaultSort: "modified.desc",
     regexify: false,
     dateify: false,
@@ -181,7 +183,10 @@ function nedbCollectionRouteHandler(opts={}) {
     let [sortField, sortOrder] = sort.split('.')
     sortOrder = sortOrder.toLowerCase() === 'desc' ? -1 : +1
     try {
-      q = JSON.parse(q)
+      if (typeof q === 'string')
+        q = JSON.parse(q)
+      Object.assign(q, defaultQuery)
+      console.log({q})
       if (dateify) {
         utils.traverse(q).forEach(function() {
           if (typeof this.node === 'string' && /^\d\d\d\d-\d\d-\d\dT.*/.test(this.node)) {
