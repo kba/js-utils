@@ -17,6 +17,7 @@ module.exports = {
   uniq,
   traverse,
   deepmerge,
+  idiomaticFetch,
 }
 
 /**
@@ -177,3 +178,24 @@ function uniq(arr=[]) {
  *
  * See [KyleAMathews/deepmerge](https://github.com/KyleAMathews/deepmerge)
  */
+
+/**
+ * ### idiomaticFetch
+ */
+function idiomaticFetch(url, options={}, format='json') {
+  return new Promise((resolve, reject) => {
+    fetch(url, options).then(resp => {
+      if (resp.ok) {
+        resp[format]().then(bodyData => {
+          Object.assign(resp, {bodyData})
+          resolve(resp)
+        })
+      } else {
+        resp.text().then(bodyData => {
+          Object.assign(resp, {bodyData})
+          reject(bodyData)
+        })
+      }
+    }).catch(reject)
+  })
+}

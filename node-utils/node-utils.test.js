@@ -19,6 +19,7 @@ tap.test('node-utils', t => {
       'uniq',
       'traverse',
       'deepmerge',
+      'idiomaticFetch',
 
       // node-utils
       'fetch',

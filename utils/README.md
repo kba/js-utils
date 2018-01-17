@@ -15,6 +15,7 @@
 	* [uniq(arr)](#uniqarr)
 	* [traverse](#traverse)
 	* [deepmerge](#deepmerge)
+	* [idiomaticFetch](#idiomaticfetch)
 * [`@kba/node-utils`](#kbanode-utils)
 	* [inspect(obj)](#inspectobj)
 	* [inspect.log(obj)](#inspectlogobj)
@@ -68,6 +69,7 @@ Return unique literals in arr.
 See [substack/js-traverse](https://github.com/substack/js-traverse)
 ### deepmerge
 See [KyleAMathews/deepmerge](https://github.com/KyleAMathews/deepmerge)
+### idiomaticFetch
 
 <!-- END-RENDER -->
 

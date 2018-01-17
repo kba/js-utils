@@ -22,6 +22,7 @@ tap.test('utils', t => {
       'uniq',
       'traverse',
       'deepmerge',
+      'idiomaticFetch',
     ])
   })
 
