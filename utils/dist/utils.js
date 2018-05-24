@@ -396,7 +396,7 @@ function idiomaticFetch(url, options = {}, format = 'json') {
       } else {
         resp.text().then(bodyData => {
           Object.assign(resp, { bodyData });
-          reject(bodyData);
+          reject(resp);
         });
       }
     }).catch(reject);
