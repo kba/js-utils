@@ -16,6 +16,7 @@
 	* [traverse](#traverse)
 	* [deepmerge](#deepmerge)
 	* [idiomaticFetch](#idiomaticfetch)
+	* [splitOnce(str, sep, rightMost=false)](#splitoncestr-sep-rightmost-false)
 * [`@kba/node-utils`](#kbanode-utils)
 	* [inspect(obj)](#inspectobj)
 	* [inspect.log(obj)](#inspectlogobj)
@@ -70,6 +71,8 @@ See [substack/js-traverse](https://github.com/substack/js-traverse)
 ### deepmerge
 See [KyleAMathews/deepmerge](https://github.com/KyleAMathews/deepmerge)
 ### idiomaticFetch
+### splitOnce(str, sep, rightMost=false)
+Split `str` at the first occurence of `sep`.
 
 <!-- END-RENDER -->
 

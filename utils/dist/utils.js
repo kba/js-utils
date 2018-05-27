@@ -227,7 +227,8 @@ module.exports = {
   uniq,
   traverse,
   deepmerge,
-  idiomaticFetch
+  idiomaticFetch,
+  splitOnce
 
   /**
    * ### urlJoin(...args)
@@ -401,6 +402,17 @@ function idiomaticFetch(url, options = {}, format = 'json') {
       }
     }).catch(reject);
   });
+}
+
+/**
+ * ### splitOnce(str, sep, rightMost=false)
+ *
+ * Split `str` at the first occurence of `sep`.
+ */
+function splitOnce(str, sep, rightMost = false) {
+  const idx = str[rightMost ? 'lastIndexOf' : 'indexOf'](sep);
+  if (idx > -1) return [str.substr(0, idx), str.substr(idx + 1)];
+  return [str];
 }
 
 /***/ }),

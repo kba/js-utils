@@ -20,6 +20,7 @@ tap.test('node-utils', t => {
       'traverse',
       'deepmerge',
       'idiomaticFetch',
+      'splitOnce',
 
       // node-utils
       'fetch',

@@ -2,7 +2,7 @@ const tap = require('tap')
 const utils = require('./dist/utils')
 
 tap.test('utils', t => {
-  t.plan(6)
+  t.plan(7)
 
   t.test('exports', t => {
     t.plan(1)
@@ -23,6 +23,7 @@ tap.test('utils', t => {
       'traverse',
       'deepmerge',
       'idiomaticFetch',
+      'splitOnce',
     ])
   })
 
@@ -69,6 +70,18 @@ tap.test('utils', t => {
       {foo: [1, 2], bar: 42, baz: 23},
       'deepmege worked'
     )
+  })
+
+  t.test('splitOnce', t => {
+    const {splitOnce} = utils
+    t.plan(2)
+
+    ;[
+      {data: ['foo=bar=yadda', '='], expect: ['foo', 'bar=yadda']},
+      {data: ['foo=bar=yadda', '=', true], expect: ['foo=bar', 'yadda']},
+    ].forEach(({data, expect}) => {
+      t.deepEquals(splitOnce(...data), expect, `${data[0]} -> ${expect}`)
+    })
   })
 
 })
