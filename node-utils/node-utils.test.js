@@ -1,9 +1,10 @@
 const tap = require('tap')
+const nodeUtils = require('.')
 
 tap.test('node-utils', t => {
   t.test('exports', t => {
     t.plan(1)
-    t.deepEquals(Object.keys(require('.')), [
+    t.deepEquals(Object.keys(nodeUtils), [
       // utils
       'deansi',
       'jsonify',
@@ -35,4 +36,16 @@ tap.test('node-utils', t => {
     ], 'all exports')
   })
   t.end()
+})
+
+
+tap.test('idiomaticFetch', t => {
+  t.plan(2)
+  const {idiomaticFetch, fetch} = nodeUtils
+  Object.assign(idiomaticFetch, {fetch})
+  idiomaticFetch('https://google.com', 'text')
+    .then(resp => {
+      t.equals(resp.status, 200)
+      t.equals(!!resp.bodyData, true)
+    })
 })

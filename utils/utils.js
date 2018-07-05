@@ -182,10 +182,22 @@ function uniq(arr=[]) {
 
 /**
  * ### idiomaticFetch
+ * 
+ * ```js
+ * idiomaticFetch(url, options={}, format='json')
+ * idiomaticFetch(url, format='json')
+ *
+ * // in node
+ * const {idiomaticFetch, fetch} = require('@kba/node-utils')
+ * Object.assign(idiomaticFetch, {fetch})
+ * ```
+ *
  */
 function idiomaticFetch(url, options={}, format='json') {
+  const _fetch = idiomaticFetch.fetch || fetch
+  if (typeof options === 'string') [format, options] = [options, {}]
   return new Promise((resolve, reject) => {
-    fetch(url, options).then(resp => {
+    _fetch(url, options).then(resp => {
       if (resp.ok) {
         resp[format]().then(bodyData => {
           Object.assign(resp, {bodyData})

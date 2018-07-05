@@ -71,6 +71,14 @@ See [substack/js-traverse](https://github.com/substack/js-traverse)
 ### deepmerge
 See [KyleAMathews/deepmerge](https://github.com/KyleAMathews/deepmerge)
 ### idiomaticFetch
+
+```js
+idiomaticFetch(url, options={}, format='json')
+idiomaticFetch(url, format='json')
+// in node
+const {idiomaticFetch, fetch} = require('@kba/node-utils')
+Object.assign(idiomaticFetch, {fetch})
+```
 ### splitOnce(str, sep, rightMost=false)
 Split `str` at the first occurence of `sep`.
 
