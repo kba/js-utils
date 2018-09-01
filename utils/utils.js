@@ -84,6 +84,19 @@ function verticalConcat(...strs) {
   return ret.join('\n')
 }
 
+
+/**
+ * ### promisify(callback)
+ */
+function promisify(cb) {
+  return (...args) => {
+    return new Promise((resolve, reject) => {
+      return cb(...args, (err, ...retargs) => {
+        return err ? reject(err) : resolve(...retargs)
+      })
+    })
+  }
+}
 /**
  * ### promiseSerial(funcs)
  * 
