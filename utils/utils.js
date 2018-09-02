@@ -19,6 +19,8 @@ module.exports = {
   deepmerge,
   idiomaticFetch,
   splitOnce,
+  promisify,
+  splitArray
 }
 
 /**
@@ -97,6 +99,29 @@ function promisify(cb) {
     })
   }
 }
+
+
+/**
+ * ### splitArray(arr, splitel=';')
+ *
+ * Split an array into sub-arrays delimited by element splitel
+ */
+function splitArray(arr, splitel=';') {
+  const ret = []
+  let cur = []
+  arr.forEach(el => {
+    if (el === splitel) {
+      ret.push(cur)
+      cur = []
+    } else {
+      cur.push(el)
+    }
+  })
+  if (cur.length)
+    ret.push(cur)
+  return ret
+}
+
 /**
  * ### promiseSerial(funcs)
  * 

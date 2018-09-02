@@ -8,6 +8,7 @@
 	* [deansi(str)](#deansistr)
 	* [verticalConcat(...strs)](#verticalconcatstrs)
 	* [promisify(callback)](#promisifycallback)
+	* [splitArray(arr, splitel=';')](#splitarrayarr-splitel----)
 	* [promiseSerial(funcs)](#promiseserialfuncs)
 	* [shortenOutput(data, max=10)](#shortenoutputdata-max-10)
 	* [parseURL(...args)](#parseurlargs)
@@ -52,6 +53,8 @@ A random integer between `low` and `high`
 Remove ANSI color sequences from `str`.
 ### verticalConcat(...strs)
 ### promisify(callback)
+### splitArray(arr, splitel=';')
+Split an array into sub-arrays delimited by element splitel
 ### promiseSerial(funcs)
 
 resolves Promises sequentially.
