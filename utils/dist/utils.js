@@ -228,7 +228,9 @@ module.exports = {
   traverse,
   deepmerge,
   idiomaticFetch,
-  splitOnce
+  splitOnce,
+  promisify,
+  splitArray
 
   /**
    * ### urlJoin(...args)
@@ -288,6 +290,39 @@ function verticalConcat(...strs) {
     });
   });
   return ret.join('\n');
+}
+
+/**
+ * ### promisify(callback)
+ */
+function promisify(cb) {
+  return (...args) => {
+    return new Promise((resolve, reject) => {
+      return cb(...args, (err, ...retargs) => {
+        return err ? reject(err) : resolve(...retargs);
+      });
+    });
+  };
+}
+
+/**
+ * ### splitArray(arr, splitel=';')
+ *
+ * Split an array into sub-arrays delimited by element splitel
+ */
+function splitArray(arr, splitel = ';') {
+  const ret = [];
+  let cur = [];
+  arr.forEach(el => {
+    if (el === splitel) {
+      ret.push(cur);
+      cur = [];
+    } else {
+      cur.push(el);
+    }
+  });
+  if (cur.length) ret.push(cur);
+  return ret;
 }
 
 /**
