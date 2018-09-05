@@ -10,6 +10,10 @@ module.exports = class StrictEventEmitter extends EventEmitter {
     // console.log({eventNames})
   }
 
+  registerEvent(eventName) {
+    this.eventNames.add(eventName)
+  }
+
   _logEvent(event, emitOrOn, color) {
     const timeStr = new Date().toISOString().slice(11)
     console.log([
