@@ -20,6 +20,7 @@
 	* [idiomaticFetch](#idiomaticfetch)
 	* [splitOnce(str, sep, rightMost=false)](#splitoncestr-sep-rightmost-false)
 	* [ensureArray(arg)](#ensurearrayarg)
+	* [new StrictEventEmitter(events=, LOGEVENTS=false)](#new-stricteventemitterevents--logevents-false)
 * [`@kba/node-utils`](#kbanode-utils)
 	* [inspect(obj)](#inspectobj)
 	* [inspect.log(obj)](#inspectlogobj)
@@ -31,7 +32,6 @@
 	* [fetch(...args)](#fetchargs)
 	* [corsMiddleware(opts)](#corsmiddlewareopts)
 	* [nedbCollectionRouteHandler(opts)](#nedbcollectionroutehandleropts)
-	* [new StrictEventEmitter(events=, LOGEVENTS=false)](#new-stricteventemitterevents--logevents-false)
 
 <!-- END-MARKDOWN-TOC -->
 
@@ -90,6 +90,8 @@ Object.assign(idiomaticFetch, {fetch})
 Split `str` at the first occurence of `sep`.
 ### ensureArray(arg)
 Ensure that arg is an array or a wrap it in one if it is not.
+### new StrictEventEmitter(events=[], LOGEVENTS=false)
+Strict eventemitter that allows only defined events and optionally logs emit/on calls
 
 <!-- END-RENDER -->
 
@@ -134,8 +136,5 @@ If `opts.allowOrigin` is `origin`, this will mirror the request header `Origin`.
 @param {String} regexify whether to turn string regexes into real regexes for `$regex` query fields
 @param {String} dateify whether to turn string ISO dates into Date objects
 ```
-
-### new StrictEventEmitter(events=[], LOGEVENTS=false)
-Strict eventemitter that allows only defined events and optionally logs emit/on calls
 
 <!-- END-RENDER -->

@@ -40,11 +40,11 @@ bootstrap:
 
 # webpack
 webpack:
-	cd utils; npx webpack
+	cd utils; npx webpack -p
 
 # webpack -w
 watch:
-	cd utils; webpack -w
+	cd utils; npx webpack -w
 
 # npm link all modules for development
 link:

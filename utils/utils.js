@@ -2,6 +2,7 @@ const URL = require('url-parse')
 const traverse = require('traverse')
 const deepmerge = require('deepmerge').default
 const shortid = require('shortid')
+const StrictEventEmitter = require('./strict-event-emitter')
 
 module.exports = {
   deansi,
@@ -22,7 +23,8 @@ module.exports = {
   splitOnce,
   promisify,
   splitArray,
-  ensureArray
+  ensureArray,
+  StrictEventEmitter
 }
 
 /**
@@ -272,3 +274,9 @@ function splitOnce(str, sep, rightMost=false) {
 function ensureArray(arg) {
   return Array.isArray(arg) ? arg : [arg]
 }
+
+/**
+ * ### new StrictEventEmitter(events=[], LOGEVENTS=false)
+ *
+ * Strict eventemitter that allows only defined events and optionally logs emit/on calls
+ */

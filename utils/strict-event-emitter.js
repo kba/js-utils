@@ -1,4 +1,4 @@
-const {EventEmitter} = require('events')
+const {EventEmitter} = require('eventemitter3')
 
 module.exports = class StrictEventEmitter extends EventEmitter {
 

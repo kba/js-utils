@@ -25,6 +25,7 @@ tap.test('node-utils', t => {
       `promisify`,
       `splitArray`,
       `ensureArray`,
+      'StrictEventEmitter',
 
       // node-utils
       'fetch',
@@ -36,7 +37,6 @@ tap.test('node-utils', t => {
       'FormData',
       'corsMiddleware',
       'nedbCollectionRouteHandler',
-      'StrictEventEmitter',
     ], 'all exports')
   })
   t.end()

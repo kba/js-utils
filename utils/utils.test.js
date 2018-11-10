@@ -1,8 +1,9 @@
 const tap = require('tap')
 const utils = require('./dist/utils')
+const {AssertionError} = require('assert')
 
 tap.test('utils', t => {
-  t.plan(8)
+  t.plan(9)
 
   t.test('exports', t => {
     t.plan(1)
@@ -26,7 +27,8 @@ tap.test('utils', t => {
       'splitOnce',
       `promisify`,
       `splitArray`,
-      `ensureArray`
+      `ensureArray`,
+      'StrictEventEmitter'
     ])
   })
 
@@ -98,6 +100,38 @@ tap.test('utils', t => {
     ].forEach(({data, expect}) => {
       t.deepEquals(ensureArray(...data), expect, `${data[0]} -> ${expect}`)
     })
+  })
+
+  t.test('StrictEventEmitter', t => {
+    const {StrictEventEmitter} = utils
+    class TestEmitter extends StrictEventEmitter {}
+    t.plan(4)
+
+    t.test('unknown event', t =>  {
+      t.plan(1)
+      const em = new TestEmitter()
+      t.throws(() => em.emit('foo'), new Error("Event 'foo' not emitted by TestEmitter"))
+    })
+
+    t.test('emit/on', t =>  {
+      t.plan(2)
+      const em = new TestEmitter(['foo'])
+      em.on('foo', () => t.ok(true, 'event caught'))
+      em.emit('foo')
+      em.emit('foo')
+    })
+
+    t.test('emit/once', t =>  {
+      t.plan(1)
+      let no = 0
+      const em = new TestEmitter(['foo'])
+      em.once('foo', () => t.ok(no++ == 0, 'event caught once'))
+      em.emit('foo')
+      em.emit('foo')
+    })
+
+
+    t.equals(1, 1)
   })
 
 })

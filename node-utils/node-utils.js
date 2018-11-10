@@ -6,7 +6,6 @@ const fs = require('fs')
 const FormData = require('form-data')
 const utils = require('@kba/utils')
 const fetch = require('node-fetch')
-const StrictEventEmitter = require('./strict-event-emitter')
 
 module.exports = {}
 Object.assign(module.exports, utils)
@@ -220,10 +219,3 @@ function nedbCollectionRouteHandler(opts={}) {
     })
   }
 }
-
-/**
- * ### new StrictEventEmitter(events=[], LOGEVENTS=false)
- *
- * Strict eventemitter that allows only defined events and optionally logs emit/on calls
- */
-Object.assign(module.exports, {StrictEventEmitter})
