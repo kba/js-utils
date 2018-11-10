@@ -19,6 +19,7 @@
 	* [deepmerge](#deepmerge)
 	* [idiomaticFetch](#idiomaticfetch)
 	* [splitOnce(str, sep, rightMost=false)](#splitoncestr-sep-rightmost-false)
+	* [ensureArray(arg)](#ensurearrayarg)
 * [`@kba/node-utils`](#kbanode-utils)
 	* [inspect(obj)](#inspectobj)
 	* [inspect.log(obj)](#inspectlogobj)
@@ -87,6 +88,8 @@ Object.assign(idiomaticFetch, {fetch})
 ```
 ### splitOnce(str, sep, rightMost=false)
 Split `str` at the first occurence of `sep`.
+### ensureArray(arg)
+Ensure that arg is an array or a wrap it in one if it is not.
 
 <!-- END-RENDER -->
 

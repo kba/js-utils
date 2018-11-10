@@ -2,7 +2,7 @@ const tap = require('tap')
 const utils = require('./dist/utils')
 
 tap.test('utils', t => {
-  t.plan(7)
+  t.plan(8)
 
   t.test('exports', t => {
     t.plan(1)
@@ -81,6 +81,19 @@ tap.test('utils', t => {
       {data: ['foo=bar=yadda', '=', true], expect: ['foo=bar', 'yadda']},
     ].forEach(({data, expect}) => {
       t.deepEquals(splitOnce(...data), expect, `${data[0]} -> ${expect}`)
+    })
+  })
+
+  t.test('ensureArray', t => {
+    const {ensureArray} = utils
+    t.plan(3)
+
+    ;[
+      {data: [1], expect: [1]},
+      {data: [[2]], expect: [2]},
+      {data: [[{}]], expect: [{}]},
+    ].forEach(({data, expect}) => {
+      t.deepEquals(ensureArray(...data), expect, `${data[0]} -> ${expect}`)
     })
   })
 

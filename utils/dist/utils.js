@@ -230,7 +230,8 @@ module.exports = {
   idiomaticFetch,
   splitOnce,
   promisify,
-  splitArray
+  splitArray,
+  ensureArray
 
   /**
    * ### urlJoin(...args)
@@ -460,6 +461,15 @@ function splitOnce(str, sep, rightMost = false) {
   const idx = str[rightMost ? 'lastIndexOf' : 'indexOf'](sep);
   if (idx > -1) return [str.substr(0, idx), str.substr(idx + 1)];
   return [str];
+}
+
+/**
+ * ### ensureArray(arg)
+ *
+ * Ensure that arg is an array or a wrap it in one if it is not.
+ */
+function ensureArray(arg) {
+  return Array.isArray(arg) ? arg : [arg];
 }
 
 /***/ }),
