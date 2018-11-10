@@ -1,6 +1,7 @@
 const URL = require('url-parse')
 const traverse = require('traverse')
 const deepmerge = require('deepmerge').default
+const shortid = require('shortid')
 
 module.exports = {
   deansi,
@@ -175,7 +176,6 @@ function lastUrlSegment(url, removeTrailing=false) {
  * Template must have at least 3 `X` in a row
  *
  */
-const shortid = require('shortid')
 const xesRe = /(XXX+)/
 shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@')
 function randomString({prefix='', template='', length=-1}={}) {

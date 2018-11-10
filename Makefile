@@ -13,7 +13,7 @@ help:
 	@echo ""
 	@echo "    test       Run all tests"
 	@echo "    readme     Generate TOC and API docs in READMEs"
-	@echo "    bootstrap  lerna bootstrap --hoist"
+	@echo "    bootstrap  lerna bootstrap"
 	@echo "    webpack    webpack"
 	@echo "    watch      webpack -w"
 	@echo "    link       npm link all modules for development"
@@ -40,7 +40,7 @@ bootstrap:
 
 # webpack
 webpack:
-	cd utils; webpack
+	cd utils; npx webpack
 
 # webpack -w
 watch:
