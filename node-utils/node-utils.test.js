@@ -22,6 +22,9 @@ tap.test('node-utils', t => {
       'deepmerge',
       'idiomaticFetch',
       'splitOnce',
+      `promisify`,
+      `splitArray`,
+      `ensureArray`,
 
       // node-utils
       'fetch',
@@ -33,6 +36,7 @@ tap.test('node-utils', t => {
       'FormData',
       'corsMiddleware',
       'nedbCollectionRouteHandler',
+      'StrictEventEmitter',
     ], 'all exports')
   })
   t.end()

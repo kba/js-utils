@@ -24,6 +24,9 @@ tap.test('utils', t => {
       'deepmerge',
       'idiomaticFetch',
       'splitOnce',
+      `promisify`,
+      `splitArray`,
+      `ensureArray`
     ])
   })
 

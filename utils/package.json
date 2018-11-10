@@ -5,7 +5,8 @@
   "main": "dist/utils.js",
   "scripts": {
     "test": "tap *.test.js",
-    "prepublish": "webpack"
+    "dev": "webpack --mode development --watch",
+    "prepublish": "webpack --mode production"
   },
   "publishConfig": {
     "access": "public"
