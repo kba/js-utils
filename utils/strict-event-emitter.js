@@ -5,6 +5,7 @@ const colorMap = {
   once: {node: 91, browser: '#8700af'},
   emit: {node: 23, browser: '#005f5f'},
 }
+const isNode = typeof window === 'undefined'
 
 module.exports = class StrictEventEmitter extends EventEmitter {
 
@@ -22,7 +23,6 @@ module.exports = class StrictEventEmitter extends EventEmitter {
 
   _logEvent(event, emitOrOn, args) {
     const timeStr = new Date().toISOString().slice(11)
-    const isNode = typeof window === undefined
     if (isNode)
       console.log([
         `\x1b[38;5;${colorMap[emitOrOn].node}m`,

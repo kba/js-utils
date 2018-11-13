@@ -130,8 +130,15 @@ tap.test('utils', t => {
       em.emit('foo')
     })
 
+    t.test('logging with ansi codes', t => {
+      t.plan(1)
+      console.log = (msg) => {
+        t.ok(msg.match(/\x1b/), 'has ansi escape codes')
+      }
+      const em = new TestEmitter(['foo'], true)
+      em.emit('foo')
+    })
 
-    t.equals(1, 1)
   })
 
 })
