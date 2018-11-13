@@ -1,6 +1,6 @@
 {
   "name": "@kba/utils",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "description": "Utility methods on values I use all the time",
   "main": "dist/utils.js",
   "scripts": {
