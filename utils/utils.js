@@ -1,6 +1,6 @@
 const URL = require('url-parse')
 const traverse = require('traverse')
-const deepmerge = require('deepmerge').default
+const deepmerge = require('deepmerge')
 const shortid = require('shortid')
 const StrictEventEmitter = require('./strict-event-emitter')
 
