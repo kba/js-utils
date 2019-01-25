@@ -237,6 +237,9 @@ function uniq(arr=[]) {
 function idiomaticFetch(url, options={}, format='json') {
   const _fetch = idiomaticFetch.fetch || fetch
   if (typeof options === 'string') [format, options] = [options, {}]
+  if (!('redirect' in options)) {
+    options.redirect = true
+  }
   return new Promise((resolve, reject) => {
     _fetch(url, options).then(resp => {
       if (resp.ok) {
