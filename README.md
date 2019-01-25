@@ -32,6 +32,7 @@
 	* [fetch(...args)](#fetchargs)
 	* [corsMiddleware(opts)](#corsmiddlewareopts)
 	* [nedbCollectionRouteHandler(opts)](#nedbcollectionroutehandleropts)
+	* [idiomaticFetch (node)](#idiomaticfetch-node)
 
 <!-- END-MARKDOWN-TOC -->
 
@@ -82,10 +83,6 @@ See [KyleAMathews/deepmerge](https://github.com/KyleAMathews/deepmerge)
 ```js
 idiomaticFetch(url, options={}, format='json')
 idiomaticFetch(url, format='json')
-// in node
-const {idiomaticFetch, fetch} = require('@kba/node-utils')
-Object.assign(idiomaticFetch, {fetch})
-```
 ### splitOnce(str, sep, rightMost=false)
 Split `str` at the first occurence of `sep`.
 ### ensureArray(arg)
@@ -136,5 +133,8 @@ If `opts.allowOrigin` is `origin`, this will mirror the request header `Origin`.
 @param {String} regexify whether to turn string regexes into real regexes for `$regex` query fields
 @param {String} dateify whether to turn string ISO dates into Date objects
 ```
+
+### idiomaticFetch (node)
+Like browser idiomaticFetch but with proxy
 
 <!-- END-RENDER -->

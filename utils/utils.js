@@ -228,10 +228,6 @@ function uniq(arr=[]) {
  * idiomaticFetch(url, options={}, format='json')
  * idiomaticFetch(url, format='json')
  *
- * // in node
- * const {idiomaticFetch, fetch} = require('@kba/node-utils')
- * Object.assign(idiomaticFetch, {fetch})
- * ```
  *
  */
 function idiomaticFetch(url, options={}, format='json') {

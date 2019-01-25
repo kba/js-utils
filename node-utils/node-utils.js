@@ -12,6 +12,7 @@ Object.assign(module.exports, utils)
 
 Object.assign(module.exports, {
   fetch,
+  idiomaticFetch,
   inspect,
   relativizeFile,
   mkdir,
@@ -218,4 +219,21 @@ function nedbCollectionRouteHandler(opts={}) {
         })
     })
   }
+}
+
+
+/**
+ * ### idiomaticFetch (node)
+ *
+ * Like browser idiomaticFetch but with proxy
+ * 
+ */
+const HttpsProxyAgent = require('https-proxy-agent')
+Object.assign(utils.idiomaticFetch, {fetch})
+function idiomaticFetch(url, options={}, format='json') {
+  if (typeof options === 'string') [format, options] = [options, {}]
+  if (process.env.HTTP_PROXY) {
+    Object.assign(options, {agent: new HttpsProxyAgent(process.env.HTTP_PROXY)})
+  }
+  return utils.idiomaticFetch(url, options, format)
 }
