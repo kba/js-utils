@@ -10,10 +10,11 @@
   "author": "kba",
   "license": "MIT",
   "dependencies": {
-    "lerna": "3.10.5"
+    "lerna": "3.10.5",
+    "tape": "4.10.1"
   },
   "devDependencies": {
     "https-proxy-agent": "^2.2.1",
-    "tap": "12.1.1"
+    "tap": "12.5.3"
   }
 }

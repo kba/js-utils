@@ -1,9 +1,14 @@
 const tap = require('tap')
 const nodeUtils = require('.')
 
-tap.test('node-utils', t => {
-  t.test('exports', t => {
+tap.test('node-utils', async t => {
+
+  t.plan(2)
+
+  t.test('exports', async t => {
+
     t.plan(1)
+
     t.deepEquals(Object.keys(nodeUtils), [
       // utils
       'deansi',
@@ -26,6 +31,7 @@ tap.test('node-utils', t => {
       `splitArray`,
       `ensureArray`,
       'StrictEventEmitter',
+      'MultiIndex',
 
       // node-utils
       'fetch',
@@ -38,17 +44,23 @@ tap.test('node-utils', t => {
       'corsMiddleware',
       'nedbCollectionRouteHandler',
     ], 'all exports')
+
   })
-  t.end()
-})
 
+  t.test('idiomaticFetch', async t => {
 
-tap.test('idiomaticFetch', t => {
-  t.plan(2)
-  const {idiomaticFetch} = nodeUtils
-  idiomaticFetch('https://google.com', 'text')
-    .then(resp => {
-      t.equals(resp.status, 200)
+    console.log('hi')
+    const {idiomaticFetch} = nodeUtils
+    try {
+      const resp = await idiomaticFetch('https://google.com', 'text')
+    } catch (resp) {
+      t.equals(resp.status, 301)
       t.equals(!!resp.bodyData, true)
-    })
+    t.end()
+    }
+  })
+
+
 })
+
+

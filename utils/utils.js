@@ -2,7 +2,10 @@ const URL = require('url-parse')
 const traverse = require('traverse')
 const deepmerge = require('deepmerge')
 const shortid = require('shortid')
+const MultiIndex = require('./multi-index')
 const StrictEventEmitter = require('./strict-event-emitter')
+
+// console.log(deepmerge)
 
 module.exports = {
   deansi,
@@ -24,7 +27,8 @@ module.exports = {
   promisify,
   splitArray,
   ensureArray,
-  StrictEventEmitter
+  StrictEventEmitter,
+  MultiIndex
 }
 
 /**

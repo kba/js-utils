@@ -3,7 +3,7 @@ const utils = require('./dist/utils')
 const {AssertionError} = require('assert')
 
 tap.test('utils', t => {
-  t.plan(9)
+  t.plan(10)
 
   t.test('exports', t => {
     t.plan(1)
@@ -28,7 +28,8 @@ tap.test('utils', t => {
       `promisify`,
       `splitArray`,
       `ensureArray`,
-      'StrictEventEmitter'
+      'StrictEventEmitter',
+      'MultiIndex'
     ])
   })
 
@@ -139,6 +140,23 @@ tap.test('utils', t => {
       em.emit('foo')
     })
 
+  })
+
+  t.test('MultiIndex', t => {
+    const {MultiIndex} = utils
+    const idx = new MultiIndex()
+    idx.index(['x', 24], 1)
+    idx.index(['x', 27], 1)
+    idx.index(['x', 27], 2)
+    idx.index(['y',  2], 2)
+    idx.unindex(2)
+    idx.index(['x', 24], 2)
+    idx.index(['x', 27], 3)
+    idx.index(['x', 27], 2)
+    t.equals(idx.sets.size, 3)
+    t.equals(idx.root.get('x').size, 2)
+    t.equals(idx.get(['x', 24]).size, 2)
+    t.end()
   })
 
 })
