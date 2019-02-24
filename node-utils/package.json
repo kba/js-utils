@@ -1,6 +1,6 @@
 {
   "name": "@kba/node-utils",
-  "version": "0.12.0",
+  "version": "0.12.1",
   "description": "Utility methods on values I use all the time",
   "main": "node-utils.js",
   "scripts": {
@@ -17,9 +17,9 @@
   },
   "homepage": "https://github.com/kba/js-utils#readme",
   "dependencies": {
-    "@kba/utils": "^0.12.0",
-    "https-proxy-agent": "^2.2.1",
+    "@kba/utils": "^0.12.1",
     "form-data": "2.3.3",
+    "https-proxy-agent": "^2.2.1",
     "mkdirp": "0.5.1",
     "node-fetch": "2.3.0",
     "rimraf": "2.6.3"
