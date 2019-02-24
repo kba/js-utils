@@ -28,7 +28,8 @@ module.exports = {
   splitArray,
   ensureArray,
   StrictEventEmitter,
-  MultiIndex
+  MultiIndex,
+  rexcape
 }
 
 /**
@@ -290,3 +291,12 @@ function ensureArray(arg) {
  * Index values by chains of keys. Useful to find object by key-value pairs
  * they contain.
  */
+
+/**
+ * ### rexcape(str)
+ *
+ * Escape regexp metacharacters
+ */
+function rexcape(str) {
+    return str.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&")
+}

@@ -3,7 +3,7 @@ const utils = require('./dist/utils')
 const {AssertionError} = require('assert')
 
 tap.test('utils', t => {
-  t.plan(10)
+  t.plan(11)
 
   t.test('exports', t => {
     t.plan(1)
@@ -29,7 +29,8 @@ tap.test('utils', t => {
       `splitArray`,
       `ensureArray`,
       'StrictEventEmitter',
-      'MultiIndex'
+      'MultiIndex',
+      'rexcape',
     ])
   })
 
@@ -156,6 +157,12 @@ tap.test('utils', t => {
     t.equals(idx.sets.size, 3)
     t.equals(idx.root.get('x').size, 2)
     t.equals(idx.get(['x', 24]).size, 2)
+    t.end()
+  })
+
+  t.test('rexcape', t => {
+    const {rexcape} = utils
+    t.equals(rexcape('([a-b]{2,3}x*)?$'), '\\(\\[a\\-b\\]\\{2\\,3\\}x\\*\\)\\?\\$')
     t.end()
   })
 

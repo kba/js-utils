@@ -22,6 +22,7 @@
 	* [ensureArray(arg)](#ensurearrayarg)
 	* [new StrictEventEmitter(events=, LOGEVENTS=false)](#new-stricteventemitterevents--logevents-false)
 	* [new MultiIndex()](#new-multiindex)
+	* [rexcape(str)](#rexcapestr)
 * [`@kba/node-utils`](#kbanode-utils)
 	* [inspect(obj)](#inspectobj)
 	* [inspect.log(obj)](#inspectlogobj)
@@ -93,6 +94,8 @@ Strict eventemitter that allows only defined events and optionally logs emit/on 
 ### new MultiIndex()
 Index values by chains of keys. Useful to find object by key-value pairs
 they contain.
+### rexcape(str)
+Escape regexp metacharacters
 
 <!-- END-RENDER -->
 

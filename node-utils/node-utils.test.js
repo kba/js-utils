@@ -32,6 +32,7 @@ tap.test('node-utils', async t => {
       `ensureArray`,
       'StrictEventEmitter',
       'MultiIndex',
+      'rexcape',
 
       // node-utils
       'fetch',
