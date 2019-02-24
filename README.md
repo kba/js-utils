@@ -21,6 +21,7 @@
 	* [splitOnce(str, sep, rightMost=false)](#splitoncestr-sep-rightmost-false)
 	* [ensureArray(arg)](#ensurearrayarg)
 	* [new StrictEventEmitter(events=, LOGEVENTS=false)](#new-stricteventemitterevents--logevents-false)
+	* [new MultiIndex()](#new-multiindex)
 * [`@kba/node-utils`](#kbanode-utils)
 	* [inspect(obj)](#inspectobj)
 	* [inspect.log(obj)](#inspectlogobj)
@@ -89,6 +90,9 @@ Split `str` at the first occurence of `sep`.
 Ensure that arg is an array or a wrap it in one if it is not.
 ### new StrictEventEmitter(events=[], LOGEVENTS=false)
 Strict eventemitter that allows only defined events and optionally logs emit/on calls
+### new MultiIndex()
+Index values by chains of keys. Useful to find object by key-value pairs
+they contain.
 
 <!-- END-RENDER -->
 

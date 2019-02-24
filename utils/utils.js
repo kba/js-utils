@@ -283,3 +283,10 @@ function ensureArray(arg) {
  *
  * Strict eventemitter that allows only defined events and optionally logs emit/on calls
  */
+
+/**
+ * ### new MultiIndex()
+ *
+ * Index values by chains of keys. Useful to find object by key-value pairs
+ * they contain.
+ */
